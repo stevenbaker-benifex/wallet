@@ -113,6 +113,74 @@ a {
     }
 }
 
+.allowance-summary-card {
+    border: 2px solid #f2f2f2;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.2;
+    }
+}
+
+.summary-rows {
+    gap: 8px;
+}
+
+.inline-icon-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+        font-size: 16px;
+    }
+}
+
+.summary-link,
+.guide-link {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+        color: $dark-green;
+    }
+}
+
+.guide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    i {
+        font-size: 12px;
+    }
+}
+
 .select {
     width: 100%;
     max-width: 400px;
