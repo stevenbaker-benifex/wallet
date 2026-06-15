@@ -1,5 +1,14 @@
 #primary-nav {
 
+    .admin-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+        margin: 1rem;
+    }
+
+
     margin-bottom: 1rem;
     display: flex;
     width: 100%;
@@ -36,6 +45,8 @@
         .logo {
             display: none;
         }
+
+        
 
         .menu-text,
         .menu-label {
