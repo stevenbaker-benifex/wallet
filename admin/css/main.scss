@@ -144,3 +144,145 @@ body {
     background-color: #fff;
   }
 }
+
+.editable-row {
+
+  &:hover {
+    // border-bottom: 1px solid #ccc !important;
+    background-color: #FAFAFA !important;
+  }
+  .editable-text {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+
+    i {
+      color: $medium-green;
+      font-size: 12px;
+    }
+  }
+
+  .edit-col {
+    color: $medium-green;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .edit-text {
+      text-decoration: underline;
+    }
+  }
+
+  &:hover {
+    border-bottom: 1px solid #ccc;
+
+    .editable-text {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.show-all-edits {
+  .editable-row {
+    // border-radius: 12px;
+    // background-color: #f2f2f2;
+
+    .editable-text {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.allowance-summary-card {
+  border: 2px solid #f2f2f2;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.875rem;
+  }
+
+  .summary-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+
+  .summary-list {
+    margin: 0;
+  }
+
+  .summary-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3.5rem;
+    gap: 0 12px;
+    align-items: center;
+    padding: 0.3rem 0;
+    margin: 0;
+    border-bottom: 1px solid #fff;
+
+    dt {
+      font-weight: 500;
+      margin: 0;
+    }
+
+    dd {
+      margin: 0;
+      min-width: 0;
+    }
+  }
+
+  .inline-icon-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .summary-link,
+  .guide-link {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      color: $dark-green;
+    }
+  }
+
+  .guide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    i {
+      font-size: 12px;
+    }
+  }
+}
