@@ -1,0 +1,147 @@
+@import 'global';
+@import 'credit-card2';
+@import 'left-nav';
+@import 'type';
+@import 'form-progress';
+@import 'buttons';
+@import 'reimbursements';
+
+body {
+  color: #1A1A1A;
+  font-family: 'Poppins', sans-serif;
+  background: $light-grey;
+  // background: #fff;
+}
+
+.mw-wrap-md {
+  max-width: 600px;
+}
+
+
+.navbar {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.navbar-item {
+  padding: 1.25rem 1rem;
+}
+
+.container.is-fluid {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Want this to sit flush  */
+.container.admin-container {
+  padding-left: calc(1 * .75rem);
+}
+
+
+.admin-wrapper {
+  max-width: 125rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  // background: $light-grey;
+  // background: #F0F1F6;
+}
+
+.navbar-menu {
+  align-items: center;
+}
+
+
+
+
+.content {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  &.content-full-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.content.narrow {
+  max-width: 1100px;
+}
+
+@media screen and (min-width:1024px) {
+  .column>.content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.banner {
+  margin-bottom: 0 !important;
+  height: 600px;
+  background: #333;
+}
+
+.background-darkgrey {
+  color: #fff;
+  background-color: #333;
+}
+
+.background-darkgrey .menu-list a {
+  color: #fff;
+}
+
+.table img {
+  display: none;
+}
+
+/* for demo only */
+.columns {
+  margin-top: 0;
+}
+
+.white-rounded-wrap {
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #fff;
+}
+
+.collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  display: block;
+  /* Always block so max-height can animate */
+}
+
+.collapse.show {
+  max-height: 500px;
+  /* Set to a value larger than your content's height */
+}
+
+
+
+.admin-btn-group {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+
+  >div {
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid #eee;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    margin: 2rem -24px 0 -24px;
+    // margin: 0 0 0 532px;
+    border-radius: 0 0 12px 12px;
+    // box-shadow: 0px -10px 10px rgba($color: #000000, $alpha: 0.1);
+    background-color: #fff;
+  }
+}

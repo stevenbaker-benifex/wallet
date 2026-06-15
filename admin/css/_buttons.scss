@@ -1,0 +1,62 @@
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    min-height: 36px;
+}
+
+.button.is-primary {
+    background-color: $dark-green;
+
+    &:hover {
+        background-color: $medium-green;
+    }
+}
+
+
+.btn {
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: 100px;
+    // border: 0;
+    position: relative;
+    padding: 8px 25px;
+    max-width: 200px;
+    outline: none;
+    box-sizing: border-box;
+    min-height: 40px;
+    line-height: 1;
+    transition: all 0.4s ease;
+    &:hover,
+    &:focus {
+        color: #fff;
+        outline: 0;
+        outline: none;
+    }
+}
+
+// .btn-primary {
+//     color: $is-blue;
+//     background: #fff;
+//     border: 2px solid $is-blue;
+//     // box-shadow: inset 2px 2px 0px #fff;
+//     &:focus, &:hover, &:active, &.btn-ready {
+//         color: #fff;
+//         border: 2px solid $is-blue;
+//         background: $is-blue;    
+//     }
+// }
+// Yellow
+
+
+.card-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

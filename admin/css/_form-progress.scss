@@ -1,0 +1,393 @@
+.admin-wrapper {
+
+    .form-steps-col {
+        max-width: 280px;
+        min-width: 200px;
+        // min-width: 250px;
+        flex-grow: 1;
+    }
+
+    .form-steps {
+
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+
+        &:after {
+            content: '';
+
+            background-color: #eee;
+            position: absolute;
+            top: 0;
+            width: 2px;
+            left: 15px;
+            height: calc(100% - 20px);
+        }
+
+        @media screen and (min-width: $screen-md) {
+            display: block;
+            margin: 0;
+            white-space: normal;
+            text-align: left;
+            position: sticky;
+            top: 0;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                // width: 20%;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                // Ripple effect for mobile only
+                @media screen and (max-width: $screen-md) {
+                    background-position: center;
+                    transition: background 0.8s;
+
+                    &:hover {
+                        background: #eee radial-gradient(circle, transparent 1%, #fff 1%) (center / 15000%);
+                    }
+
+                    &:active {
+                        background-color: #eee;
+                        background-size: 100%;
+                        transition: background 0s;
+                    }
+                }
+
+                @media screen and (min-width: $screen-md) {
+                    position: relative;
+                    width: 100%;
+                    // margin: 0 0 5px 0;
+                }
+
+                &.active {
+
+
+
+
+                    a {
+                  
+                       
+
+                            // icons white for desktop
+                            .colorme-fill {
+                                fill: #fff;
+                            }
+
+                            .colorme-stroke {
+                                stroke: #fff;
+                            }
+
+                            
+                        
+                    }
+                    .form-step-num {
+                        color: #fff;
+                        border-color: $medium-green;
+                        background-color: $medium-green;
+                    }
+                    .nav-link-text {
+                        
+                       
+                    }
+                }
+
+                // Only show 5 links for mobile (inc. more tab)
+                // See https://material.io/components/bottom-navigation#usage
+                &:nth-child(n+6) {
+                    display: none;
+
+                    // For Desktop show all links (down left hand column)
+                    @media screen and (min-width: $screen-md) {
+                        display: flex;
+                    }
+                }
+            }
+
+            .nav-show-more {
+
+                // Hide burger menu for larger screens
+                // Layout switches to left hand menu
+                @media screen and (min-width: $screen-md) {
+                    display: none;
+                }
+            }
+
+            a {
+                text-align: center;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-weight: 400;
+                font-size: 0.625rem;
+                text-decoration: none;
+                transition: color 0.2s ease-in;
+
+                @media screen and (min-width: $screen-md) {
+                    // opacity: 0.7;
+                    // color: #fff;
+                    flex-direction: row;
+                    font-size: 15px;
+                    text-align: left;
+                    height: auto;
+                    padding: 0;
+                    margin: 0 0 1rem 0;
+                }
+            }
+
+            .nav-icon {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+
+                // height: $primary-nav-height;
+                &:hover {
+                    text-decoration: none;
+                    opacity: 1;
+                }
+            }
+
+            .nav-link-text {
+                z-index: 1;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #222;
+                font-size: 14px;
+            }
+
+            .form-step-num svg {
+                width: 32px;
+                height: 32px;
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                border-radius: 50%;
+                display: block;
+                margin: 0;
+
+            }
+
+            img,
+            svg,
+            .burger-icon {
+                z-index: 1;
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                position: relative;
+                vertical-align: middle;
+                margin: 5px auto 2px auto;
+
+                // icons white for desktop
+                @media screen and (min-width: $screen-md) {
+                    width: 22px;
+                    height: 22px;
+                    margin: 0 10px 0 0;
+
+                    .colorme-fill {
+                        fill: #fff;
+                    }
+
+                    .colorme-stroke {
+                        stroke: #fff;
+                    }
+                }
+            }
+
+
+
+            // Uses JS to shrink nav
+            &.shrink-nav {
+                @media screen and (min-width: $screen-md) {
+                    width: 50px !important;
+                    flex-shrink: 0;
+                    padding-left: 0;
+                }
+
+                li {
+                    a {
+                        justify-content: center;
+
+                        @media screen and (min-width: $screen-md) {
+                            padding: 8px;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            @media screen and (min-width: $screen-md) {
+                                &:after {
+                                    border-radius: 0;
+                                    left: 0;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+
+                    // Center svg when nav is shrunk
+                    img,
+                    svg,
+                    .burger-icon {
+                        @media screen and (min-width: $screen-md) {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+
+                .nav-link-text {
+                    @media screen and (min-width: $screen-md) {
+                        display: none;
+                    }
+                }
+
+                .nav-icon {
+                    margin: 0 !important;
+                }
+
+                // Hide the shrink toggle text
+                .shrink-nav-toggle {
+                    left: 8px;
+
+                    &:before {
+                        content: '\02192';
+                        display: inline-block;
+                        font-size: 14px;
+                    }
+
+                    span {
+                        display: none;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+
+        // Dont chnage values here as it's used globally
+        // Change on specific instace if overrides are neeeded
+        @mixin blank-btn {
+            border: 0;
+            padding: 0;
+            outline: 0;
+            outline: none;
+            background: transparent;
+            -webkit-appearance: none;
+            position: relative;
+
+            &:hover,
+            &:focus {
+                outline: 0;
+                outline: none;
+            }
+
+            &[disabled] {
+                opacity: 0.2;
+                cursor: not-allowed;
+            }
+        }
+
+        .form-step-num {
+
+            @include blank-btn;
+            // border-sizing: border-box;
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 0.875rem;
+            line-height: 1;
+            border-radius: 100%;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #222;
+            border: 2px solid #eee;
+            background-color: #FFF;
+
+            li.active & {
+
+                background-color: #fff;
+            }
+        }
+
+        .checkmark {
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+        }
+
+        .checkmark__circle {
+            // fill: $dark-green;
+            // fill: #FFF;
+        }
+
+        .checkmark__check {
+            stroke: $medium-green;
+        }
+
+        .animate-step {
+            .checkmark {
+
+                //margin: 10% auto;
+                //box-shadow: inset 0px 0px 0px #7ac142;
+                // box-shadow: inset 0px 0px 0px blue;
+                animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+            }
+
+            .checkmark__circle {
+                stroke-dasharray: 166;
+                stroke-dashoffset: 166;
+                stroke-width: 2;
+                stroke-miterlimit: 10;
+                //stroke: #7ac142;
+                // stroke: blue;
+                
+                fill: none;
+                animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+            }
+
+            .checkmark__check {
+                transform-origin: 50% 50%;
+                stroke-dasharray: 48;
+                stroke-dashoffset: 48;
+                animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+            }
+
+            @keyframes stroke {
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @keyframes scale {
+
+                0%,
+                100% {
+                    transform: none;
+                }
+
+                50% {
+                    transform: scale3d(1.1, 1.1, 1);
+                }
+            }
+
+            @keyframes fill {
+                100% {
+                    //box-shadow: inset 0px 0px 0px 30px #7ac142;
+                    // box-shadow: inset 0px 0px 0px 32px $medium-green;
+                }
+            }
+        }
+    }
+}
