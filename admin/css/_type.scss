@@ -101,6 +101,18 @@ a {
 
 }
 
+.show-all-edits {
+    .editable-row {
+        border-radius: 12px;
+        background-color: #f2f2f2;
+
+        .editable-text {
+            opacity: 1;
+            cursor: pointer;
+        }
+    }
+}
+
 .edit-col {
     color: $medium-green;
     display: flex;
@@ -145,10 +157,6 @@ a {
         margin: 0;
         line-height: 1.2;
     }
-}
-
-.summary-rows {
-    gap: 8px;
 }
 
 .inline-icon-value {

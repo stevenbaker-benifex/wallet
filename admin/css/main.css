@@ -356,6 +356,16 @@ a {
   cursor: pointer;
 }
 
+.show-all-edits .editable-row {
+  border-radius: 12px;
+  background-color: #f2f2f2;
+}
+
+.show-all-edits .editable-row .editable-text {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .edit-col {
   color: #287E56;
   display: -webkit-box;
