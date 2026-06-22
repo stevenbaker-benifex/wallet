@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wellbeing Allowance - Benefex</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bulma Version 0.9.0-->
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+
+  <div class="app">
+
+
+
+    <div class="bfx-container">
+
+
+
+
+      <div class="white-rounded-wrap h-100 pb-0" data-testid="steps">
+        <form class="vstack gap-medium is-flexbox h-100" action="#">
+
+          <div class="mw-wrap-md-x h-100">
+
+            <div class="allowance-summary-card">
+
+              <div class="summary-section">
+                <div class="summary-section-header">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                  <h2>Allowance details</h2>
+                </div>
+
+                <dl class="summary-list">
+
+                  <div class="summary-row editable-row">
+                    <dt>Allowance type</dt>
+                    <dd>
+                      <span class="inline-icon-value">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        Reimbursement
+                      </span>
+                    </dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Source</dt>
+                    <dd>Import</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row">
+                    <dt>Created</dt>
+                    <dd>12 Jan 2022 - 13:26</dd>
+                  </div>
+
+                  <div class="summary-row">
+                    <dt>Currency</dt>
+                    <dd>GBP</dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Amount per employee</dt>
+                    <dd>As per import</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Claim types</dt>
+                    <dd>
+                      <a href="#" class="summary-link">3 claim types set</a>
+                    </dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Employee guide</dt>
+                    <dd>
+                      <a href="http://www.google.com" target="_blank" class="guide-link">View guide <i
+                          class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+              </div>
+
+              <div class="summary-section">
+                <div class="summary-section-header">
+                  <i class="fa-regular fa-calendar"></i>
+                  <h2>Schedule</h2>
+                </div>
+
+                <dl class="summary-list">
+
+                  <div class="summary-row editable-row">
+                    <dt>Launch date</dt>
+                    <dd>19 Feb 2026</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Close date</dt>
+                    <dd>No close date set</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Spend period</dt>
+                    <dd>01 Jan to 31 Dec - 23:59 (annual)</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                  <div class="summary-row editable-row">
+                    <dt>Claim until</dt>
+                    <dd>20 Jan (20 day grace period)</dd>
+                    <dd class="edit-col">
+                      <span class="editable-text"><span class="edit-text">Edit</span>
+                        <i class="fa-solid fa-edit"></i></span>
+                    </dd>
+                  </div>
+
+                </dl>
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </form>
+
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+  <script src="js/app.js"></script>
+
+  <script>
+    if (new URLSearchParams(window.location.search).has('show-all-edits')) {
+      document.body.classList.add('show-all-edits');
+    }
+  </script>
+
+
+
+</body>
+
+</html>
