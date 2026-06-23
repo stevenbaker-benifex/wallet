@@ -72,7 +72,7 @@ export function GetReimbursedPage() {
             <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty={!!activeClaim} />
           </div>
 
-          <div className="flex h-full w-[400px] shrink-0 flex-col overflow-hidden">
+          <div className="flex h-full w-[400px] flex-col overflow-hidden">
             {rightPanelState === 'empty' && <div className="p-6"><EmptyStatePanel /></div>}
             {rightPanelState === 'skeleton' && <ClaimFormSkeleton />}
             {rightPanelState === 'form' && activeClaim && <ClaimForm data={activeClaim} />}
