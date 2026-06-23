@@ -47,9 +47,9 @@ export function ClaimSubmittedPage() {
           <div className="flex flex-col gap-4">
             <Breadcrumb label="Wellbeing Allowance" />
 
-            <h1 className="font-heading text-2xl font-semibold leading-[1.2] text-grey-90">
+            {/* <h1 className="font-heading text-2xl font-semibold leading-[1.2] text-grey-90">
               Dental treatment
-            </h1>
+            </h1> */}
 
             {/* Success banner */}
             <div className="flex items-start gap-3 rounded-xl border border-[#3AAB52] bg-[#F0FAF2] px-4 py-3">
@@ -101,9 +101,9 @@ export function ClaimSubmittedPage() {
         <div className="flex flex-col gap-6 p-8">
           <Breadcrumb label="Wellbeing Allowance" />
 
-          <h1 className="font-heading text-[32px] font-semibold leading-[1.2] text-grey-90">
+          {/* <h1 className="font-heading text-[32px] font-semibold leading-[1.2] text-grey-90">
             Dental treatment
-          </h1>
+          </h1> */}
 
           {/* Success banner */}
           <div className="flex items-start gap-3 rounded-xl border border-[#3AAB52] bg-[#F0FAF2] px-4 py-3">
@@ -120,7 +120,7 @@ export function ClaimSubmittedPage() {
         </div>
 
         {/* Body */}
-        <div className="flex min-h-0 flex-1 flex-col overflow-hidden border-t border-grey-10">
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
           <div className="flex-1 overflow-y-auto p-8">
             <div className="rounded-xl border-2 border-grey-05 bg-white p-6">
               <div className="flex flex-col gap-3">
