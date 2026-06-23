@@ -12,7 +12,7 @@ export function FormField({ label, required, ai, children }: FormFieldProps) {
   return (
     <div className="relative w-full max-w-[400px]">
       <div className="mb-2 flex items-center gap-0.5">
-        <label className="font-body text-base font-bold leading-6 tracking-wide text-grey-90">
+        <label className="font-body text-sm font-bold leading-5 tracking-wide text-grey-90">
           {label}
         </label>
         {required && <span className="text-xs text-negative">*</span>}

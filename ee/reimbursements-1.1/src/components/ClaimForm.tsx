@@ -21,9 +21,9 @@ export function ClaimForm({ data, showFooter = true }: ClaimFormProps) {
   return (
     <div className="flex h-full w-full flex-col">
       {/* scrollable content with 24px padding */}
-      <div className="flex flex-1 flex-col gap-6 overflow-y-auto p-6">
+      <div className="flex flex-1 flex-col gap-6 overflow-y-auto p-4 lg:p-6">
         <div className="flex items-center gap-1.5">
-          <i className="fa-regular fa-receipt text-base text-grey-90" aria-hidden />
+          <i className="fa-solid fa-receipt text-base text-grey-90" aria-hidden />
           <h2 className="font-heading text-lg font-semibold leading-[1.2] text-grey-90">
             Claim details
           </h2>
@@ -65,7 +65,7 @@ export function ClaimForm({ data, showFooter = true }: ClaimFormProps) {
       </div>
 
       {showFooter && (
-        <div className="flex shrink-0 flex-col items-start gap-3 border-t border-grey-10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex shrink-0 flex-col items-start gap-3 border-t border-grey-10 px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-6">
           <p className="font-body text-xs leading-[18px] tracking-wide text-grey-70">
             Please check fields populated using AI.
           </p>

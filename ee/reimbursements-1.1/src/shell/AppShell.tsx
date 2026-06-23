@@ -9,8 +9,8 @@ interface AppShellProps {
 
 export function AppShell({ activeNav = 'wallet', children }: AppShellProps) {
   return (
-    <div className="min-h-full md:bg-brand-dark-green md:p-6">
-      <div className="flex min-h-full flex-col md:mx-auto md:min-h-[calc(100vh-3rem)] md:max-w-[1552px] md:flex-row md:gap-6">
+    <div className="min-h-full lg:bg-brand-dark-green lg:p-6">
+      <div className="flex min-h-full flex-col lg:mx-auto lg:min-h-[calc(100vh-3rem)] lg:max-w-[1552px] lg:flex-row lg:gap-6">
         <Sidebar activeNav={activeNav} />
         <main className="flex min-h-0 min-w-0 flex-1 flex-col">{children}</main>
       </div>

@@ -7,7 +7,7 @@ interface SidebarProps {
 
 export function Sidebar({ activeNav }: SidebarProps) {
   return (
-    <aside className="hidden w-[260px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-menu md:flex">
+    <aside className="hidden w-[260px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-menu lg:flex">
       <div className="flex h-[90px] items-center px-4 py-4">
         <img src={benifexLogo} alt="Benifex" className="h-[49px] w-auto" />
       </div>
@@ -55,7 +55,7 @@ export function Sidebar({ activeNav }: SidebarProps) {
 
       <div className="flex items-center gap-2 border-t border-brand-taupe-border bg-brand-oat py-3 pl-6 pr-3">
         <div className="flex flex-1 items-center gap-2">
-          <i className="fa-regular fa-circle-user text-base text-grey-50" aria-hidden />
+          <i className="fa-solid fa-circle-user text-base text-grey-50" aria-hidden />
           <span className="font-heading text-base font-medium leading-4 text-grey-90">Profile</span>
         </div>
         <button
@@ -63,7 +63,7 @@ export function Sidebar({ activeNav }: SidebarProps) {
           className="flex size-9 items-center justify-center rounded-full"
           aria-label="Toggle profile menu"
         >
-          <i className="fa-regular fa-xmark text-base text-grey-70" aria-hidden />
+          <i className="fa-solid fa-xmark text-base text-grey-70" aria-hidden />
         </button>
       </div>
     </aside>

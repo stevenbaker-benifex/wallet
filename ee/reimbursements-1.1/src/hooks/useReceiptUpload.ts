@@ -51,17 +51,18 @@ export function useReceiptUpload() {
     setReceipts((prev) => {
       const next = prev.filter((item) => item.id !== id)
       const lastComplete = [...next].reverse().find((item) => item.status === 'complete')
-      setActiveClaim(lastComplete?.extractedData ?? null)
+      // only clear the claim if another complete receipt exists to replace it;
+      // if all receipts are gone, keep the form visible for validation on submit
+      if (lastComplete) setActiveClaim(lastComplete.extractedData ?? null)
       return next
     })
   }, [])
 
   const rightPanelState: RightPanelState = (() => {
-    if (receipts.length === 0) return 'empty'
     if (receipts.some((r) => r.status === 'uploading' || r.status === 'extracting')) {
       return 'skeleton'
     }
-    if (activeClaim && receipts.some((r) => r.status === 'complete')) return 'form'
+    if (activeClaim) return 'form'
     return 'empty'
   })()
 

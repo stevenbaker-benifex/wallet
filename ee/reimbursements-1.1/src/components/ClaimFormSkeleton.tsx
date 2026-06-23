@@ -1,6 +1,6 @@
 export function ClaimFormSkeleton() {
   return (
-    <div className="flex w-full flex-col gap-4 p-6">
+    <div className="flex w-full flex-col gap-4 p-4 lg:p-6">
       <div className="h-9 animate-pulse rounded bg-grey-05" />
       <div className="h-9 animate-pulse rounded bg-grey-05" />
       <div className="h-9 animate-pulse rounded bg-grey-05" />
