@@ -4,9 +4,10 @@ import { FormField, SelectInput, TextArea, TextInput } from './FormField'
 
 interface ClaimFormProps {
   data: ExtractedClaimData
+  showFooter?: boolean
 }
 
-export function ClaimForm({ data }: ClaimFormProps) {
+export function ClaimForm({ data, showFooter = true }: ClaimFormProps) {
   const [form, setForm] = useState(data)
 
   useEffect(() => {
@@ -63,18 +64,19 @@ export function ClaimForm({ data }: ClaimFormProps) {
         </div>
       </div>
 
-      {/* footer: flush to edges, 24px horizontal padding inside */}
-      <div className="flex shrink-0 flex-col items-start gap-3 border-t border-grey-10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-body text-xs leading-[18px] tracking-wide text-grey-70">
-          Please check fields populated using AI.
-        </p>
-        <button
-          type="button"
-          className="inline-flex h-9 shrink-0 items-center justify-center rounded-full bg-brand-oregon px-4 font-button text-sm leading-[21px] text-white"
-        >
-          Submit
-        </button>
-      </div>
+      {showFooter && (
+        <div className="flex shrink-0 flex-col items-start gap-3 border-t border-grey-10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-body text-xs leading-[18px] tracking-wide text-grey-70">
+            Please check fields populated using AI.
+          </p>
+          <button
+            type="button"
+            className="inline-flex h-9 shrink-0 items-center justify-center rounded-full bg-brand-oregon px-4 font-button text-sm leading-[21px] text-white"
+          >
+            Submit
+          </button>
+        </div>
+      )}
     </div>
   )
 }

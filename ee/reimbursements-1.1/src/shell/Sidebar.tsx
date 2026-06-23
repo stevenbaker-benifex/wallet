@@ -7,7 +7,7 @@ interface SidebarProps {
 
 export function Sidebar({ activeNav }: SidebarProps) {
   return (
-    <aside className="flex w-[260px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-menu">
+    <aside className="hidden w-[260px] shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-menu md:flex">
       <div className="flex h-[90px] items-center px-4 py-4">
         <img src={benifexLogo} alt="Benifex" className="h-[49px] w-auto" />
       </div>

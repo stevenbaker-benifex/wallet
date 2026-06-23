@@ -9,7 +9,7 @@ export function EmptyStatePanel() {
         alt="Hand holding a card reader printing a receipt"
         className="h-[182px] w-[400px] object-cover"
       />
-      <div className="flex w-full flex-col gap-6 pt-6">
+      <div className="flex w-full flex-col gap-6 md:pt-6">
         <p className="text-center font-body text-base leading-6 tracking-wide text-grey-90">
           Add a receipt to start your reimbursement claim.
         </p>
