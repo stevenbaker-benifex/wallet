@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+@theme {
+  --color-brand-dark-green: var(--color-brand-dark-green);
+  --color-brand-oregon: var(--color-brand-oregon);
+  --color-brand-oat: var(--color-brand-oat);
+  --color-brand-taupe: var(--color-brand-taupe);
+  --color-brand-taupe-border: var(--color-brand-taupe-border);
+  --color-brand-purple: var(--color-brand-purple);
+  --color-negative: var(--color-negative);
+
+  --color-grey-90: var(--color-grey-90);
+  --color-grey-80: var(--color-grey-80);
+  --color-grey-70: var(--color-grey-70);
+  --color-grey-50: var(--color-grey-50);
+  --color-grey-20: var(--color-grey-20);
+  --color-grey-10: var(--color-grey-10);
+  --color-grey-05: var(--color-grey-05);
+  --color-grey-02: var(--color-grey-02);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-button: var(--font-button);
+
+  --shadow-menu: var(--shadow-menu);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-grey-90);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
