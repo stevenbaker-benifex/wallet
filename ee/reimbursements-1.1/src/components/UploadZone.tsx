@@ -49,8 +49,10 @@ export function UploadZone({ onFilesSelected }: UploadZoneProps) {
 
   return (
     <div
-      className={`flex min-h-[280px] w-full cursor-pointer items-center rounded-2xl border-2 border-dashed px-3 py-12 transition-colors ${
-        isDragging ? 'border-brand-oregon bg-[#f7f3ed]' : 'border-grey-20 bg-grey-02'
+      className={`group flex min-h-[280px] w-full cursor-pointer items-center rounded-2xl border-2 border-dashed px-3 py-12 transition-colors ${
+        isDragging
+          ? 'border-brand-oregon bg-[#eaf3ed] ring-4 ring-brand-oregon/10'
+          : 'border-grey-20 bg-grey-02 hover:border-brand-oregon hover:bg-[#f0f5f3]'
       }`}
       onClick={() => inputRef.current?.click()}
       onDragEnter={onDragEnter}
@@ -71,21 +73,31 @@ export function UploadZone({ onFilesSelected }: UploadZoneProps) {
 
       <div className="flex w-full flex-col items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-3">
-          <p className="text-center font-body text-base font-bold leading-6 tracking-wide text-grey-90">
-            Drop receipt(s) here
+          <i
+            className={`fa-solid fa-arrow-up-from-bracket text-2xl transition-colors ${
+              isDragging ? 'text-brand-oregon' : 'text-grey-50 group-hover:text-brand-oregon'
+            }`}
+            aria-hidden
+          />
+          <p className={`text-center font-body text-base font-bold leading-6 tracking-wide transition-colors ${
+            isDragging ? 'text-brand-oregon' : 'text-grey-90 group-hover:text-brand-oregon'
+          }`}>
+            {isDragging ? 'Release to upload' : 'Drop receipt(s) here'}
           </p>
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation()
-              inputRef.current?.click()
-            }}
-            className="inline-flex h-9 items-center justify-center rounded-full border border-grey-20 bg-white px-4 py-2 font-button text-sm font-semibold leading-[21px] text-grey-70 hover:bg-grey-05"
-          >
-            or browse
-          </button>
+          {!isDragging && (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation()
+                inputRef.current?.click()
+              }}
+              className="inline-flex h-9 items-center justify-center rounded-full border border-grey-20 bg-white px-4 py-2 font-button text-sm font-semibold leading-[21px] text-grey-70 transition-colors group-hover:border-brand-oregon group-hover:text-brand-oregon hover:bg-grey-05"
+            >
+              or browse
+            </button>
+          )}
         </div>
-        <p className="max-w-[560px] text-center font-body text-xs leading-[18px] tracking-wide text-grey-90">
+        <p className="max-w-[560px] text-center font-body text-xs leading-[18px] tracking-wide text-grey-50">
           Supported formats: JPG, PNG, PDF
         </p>
       </div>
