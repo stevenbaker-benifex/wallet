@@ -49,7 +49,7 @@ export function UploadZone({ onFilesSelected }: UploadZoneProps) {
 
   return (
     <div
-      className={`flex min-h-[310px] w-full cursor-pointer items-center rounded-2xl border-2 border-dashed px-3 py-12 transition-colors ${
+      className={`flex min-h-[300px] w-full cursor-pointer items-center rounded-2xl border-2 border-dashed px-3 py-12 transition-colors ${
         isDragging ? 'border-brand-oregon bg-[#f7f3ed]' : 'border-grey-20 bg-grey-02'
       }`}
       onClick={() => inputRef.current?.click()}

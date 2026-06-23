@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { AppShell } from '@/shell/AppShell'
 import { MobileHeader } from '@/shell/MobileHeader'
 import { Breadcrumb } from '@/components/Breadcrumb'
@@ -11,8 +12,10 @@ import { UploadZone } from '@/components/UploadZone'
 import { useReceiptUpload } from '@/hooks/useReceiptUpload'
 
 export function GetReimbursedPage() {
+  const navigate = useNavigate()
   const { receipts, activeClaim, rightPanelState, addReceipt, removeReceipt } = useReceiptUpload()
   const handleFiles = (files: File[]) => files.forEach(addReceipt)
+  const handleSubmit = () => navigate('/claim-submitted')
 
   return (
     <AppShell activeNav="wallet">
@@ -51,6 +54,7 @@ export function GetReimbursedPage() {
             </p>
             <button
               type="button"
+              onClick={handleSubmit}
               className="flex h-11 w-full items-center justify-center rounded-full bg-brand-oregon font-button text-base text-white"
             >
               Submit
@@ -75,7 +79,7 @@ export function GetReimbursedPage() {
           <div className="flex h-full w-[400px] flex-col overflow-hidden">
             {rightPanelState === 'empty' && <div className="p-6"><EmptyStatePanel /></div>}
             {rightPanelState === 'skeleton' && <ClaimFormSkeleton />}
-            {rightPanelState === 'form' && activeClaim && <ClaimForm data={activeClaim} />}
+            {rightPanelState === 'form' && activeClaim && <ClaimForm data={activeClaim} onSubmit={handleSubmit} />}
           </div>
         </div>
       </div>

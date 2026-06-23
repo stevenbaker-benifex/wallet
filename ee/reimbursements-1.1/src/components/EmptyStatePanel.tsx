@@ -11,7 +11,7 @@ export function EmptyStatePanel() {
       />
       <div className="flex w-full flex-col gap-6 lg:pt-6">
         <p className="text-center font-body text-base leading-6 tracking-wide text-grey-90">
-          Add a receipt to start your reimbursement claim.
+          Not sure what you can claim for?
         </p>
         <Button variant="outline-dark" className="w-full">
           Claims guide

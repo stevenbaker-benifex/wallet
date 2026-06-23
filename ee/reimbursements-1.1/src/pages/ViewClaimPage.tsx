@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppShell } from '@/shell/AppShell'
 import { MobileHeader } from '@/shell/MobileHeader'
 import { Breadcrumb } from '@/components/Breadcrumb'
@@ -84,11 +85,11 @@ function Avatar({ initials, colorClass }: { initials: string; colorClass: string
 function StatusBanner() {
   return (
     <div className="flex items-start gap-3 rounded-xl border border-[#FFBB33] bg-[#FFFBF0] px-4 py-3">
-      <i className="fa-regular fa-circle-xmark mt-0.5 text-[#FFBB33]" aria-hidden />
+      <i className="fa-regular fa-clock mt-1 text-[#FFBB33]" aria-hidden />
       <div className="flex flex-col gap-0.5">
-        <p className="font-heading text-sm font-semibold leading-[21px] text-grey-90">Pending</p>
+        <p className="font-heading text-xl font-semibold leading-[1.2] text-grey-90">Pending</p>
         <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">
-          This claim has not been reviewed yet. Submitted: {CLAIM.dateSubmitted}
+          This claim has not been reviewed yet.
         </p>
       </div>
     </div>
@@ -196,6 +197,7 @@ function NotesPanel({ noteText, setNoteText }: { noteText: string; setNoteText: 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export function ViewClaimPage() {
+  const navigate = useNavigate()
   const [noteText, setNoteText] = useState('')
 
   return (
@@ -229,6 +231,7 @@ export function ViewClaimPage() {
         <div className="fixed bottom-0 left-0 right-0 flex items-center gap-4 border-t border-grey-10 bg-white px-4 pb-6 pt-4">
           <button
             type="button"
+            onClick={() => navigate('/edit-claim')}
             className="flex h-11 flex-1 items-center justify-center rounded-full bg-brand-oregon font-button text-base text-white"
           >
             Edit claim
@@ -270,6 +273,7 @@ export function ViewClaimPage() {
             <div className="flex shrink-0 items-center gap-6 border-t border-grey-10 px-8 py-4">
               <button
                 type="button"
+                onClick={() => navigate('/edit-claim')}
                 className="inline-flex h-9 items-center justify-center rounded-full bg-brand-oregon px-5 font-button text-sm text-white"
               >
                 Edit claim
