@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      // GitHub Pages SPA redirect: store the path then redirect to the app root
+      var base = '/wallet/ee/reimbursements-1.1/';
+      var path = window.location.pathname.replace(base, '') || '/';
+      sessionStorage.setItem('ghpages_redirect', '/' + path);
+      window.location.replace(base);
+    </script>
+  </head>
+</html>
