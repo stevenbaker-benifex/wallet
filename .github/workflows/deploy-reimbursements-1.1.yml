@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'wallet/ee/reimbursements-1.1/**'
+      - 'ee/reimbursements-1.1/**'
 
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
@@ -27,17 +27,17 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        working-directory: wallet/ee/reimbursements-1.1
+        working-directory: ee/reimbursements-1.1
         run: npm ci
 
       - name: Build
-        working-directory: wallet/ee/reimbursements-1.1
+        working-directory: ee/reimbursements-1.1
         run: npm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: wallet/ee/reimbursements-1.1/dist
+          publish_dir: ee/reimbursements-1.1/dist
           destination_dir: ee/reimbursements-1.1
           keep_files: true
