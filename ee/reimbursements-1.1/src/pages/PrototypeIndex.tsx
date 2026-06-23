@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { prototypeRoutes } from '@/routes'
 
 export function PrototypeIndex() {
-  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+  const base = typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}` : ''
 
   return (
     <div className="min-h-full bg-brand-dark-green p-8">
@@ -14,7 +14,7 @@ export function PrototypeIndex() {
 
         <ul className="mt-8 space-y-4">
           {prototypeRoutes.map((route) => {
-            const url = `${origin}${route.path}`
+            const url = `${base}#${route.path}`
             return (
               <li
                 key={route.path}
