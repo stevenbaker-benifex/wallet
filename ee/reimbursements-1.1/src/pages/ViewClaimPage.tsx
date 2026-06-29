@@ -188,10 +188,10 @@ export function ViewClaimPage() {
         </div>
 
         {/* Body */}
-        <div className="flex border-t border-grey-10">
+        <div className="flex">
 
           {/* Left column — grows with content */}
-          <div className="flex min-w-0 flex-1 flex-col border-r border-grey-10">
+          <div className="flex min-w-0 flex-1 flex-col">
             <div className="flex flex-col gap-6 p-8">
               <AmountsCard />
               <ClaimDetailsCard />
@@ -216,9 +216,9 @@ export function ViewClaimPage() {
             </div>
           </div>
 
-          {/* Right column — Notes scrolls if feed gets long */}
+          {/* Right column — Notes in a card */}
           <div className="flex w-[400px] shrink-0 flex-col p-8">
-            <div className="max-h-[480px] overflow-y-auto">
+            <div className="max-h-[480px] overflow-y-auto rounded-xl border-2 border-grey-10 p-4 lg:p-6">
               <NotesPanel />
             </div>
           </div>
