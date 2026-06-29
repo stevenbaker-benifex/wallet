@@ -126,7 +126,7 @@ function ReceiptsCard() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export function ViewClaimPage() {
+export function ViewClaimV3Page() {
   const navigate = useNavigate()
 
   return (

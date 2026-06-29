@@ -4,6 +4,7 @@ import { ViewClaimPage } from '@/pages/ViewClaimPage'
 import { EditClaimPage } from '@/pages/EditClaimPage'
 import { ClaimSubmittedPage } from '@/pages/ClaimSubmittedPage'
 import { ViewClaimV2Page } from '@/pages/ViewClaimV2Page'
+import { ViewClaimV3Page } from '@/pages/ViewClaimV3Page'
 import { PrototypeIndex } from '@/pages/PrototypeIndex'
 
 export interface PrototypeRoute {
@@ -38,6 +39,11 @@ export const prototypeRoutes: PrototypeRoute[] = [
     name: 'View claim v2',
     description: 'Duplicate of edit-claim for experimentation',
   },
+  {
+    path: '/view-claim-v3',
+    name: 'View claim v3',
+    description: 'Duplicate of view-claim for experimentation',
+  },
 ]
 
 export const routes: RouteObject[] = [
@@ -47,4 +53,5 @@ export const routes: RouteObject[] = [
   { path: '/edit-claim', element: <EditClaimPage /> },
   { path: '/claim-submitted', element: <ClaimSubmittedPage /> },
   { path: '/view-claim-v2', element: <ViewClaimV2Page /> },
+  { path: '/view-claim-v3', element: <ViewClaimV3Page /> },
 ]
