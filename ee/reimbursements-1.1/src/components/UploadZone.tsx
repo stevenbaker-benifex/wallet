@@ -73,12 +73,7 @@ export function UploadZone({ onFilesSelected }: UploadZoneProps) {
 
       <div className="flex w-full flex-col items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-3">
-          <i
-            className={`fa-solid fa-arrow-up-from-bracket text-2xl transition-colors ${
-              isDragging ? 'text-brand-oregon' : 'text-grey-50 group-hover:text-brand-oregon'
-            }`}
-            aria-hidden
-          />
+
           <p className={`text-center font-body text-base font-bold leading-6 tracking-wide transition-colors ${
             isDragging ? 'text-brand-oregon' : 'text-grey-90 group-hover:text-brand-oregon'
           }`}>
