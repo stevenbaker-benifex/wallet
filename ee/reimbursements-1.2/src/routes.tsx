@@ -23,14 +23,14 @@ export const prototypeRoutes: PrototypeRoute[] = [
     description: 'Read-only view of a submitted claim with notes panel',
   },
   {
-    path: '/edit-claim',
-    name: 'Edit claim',
-    description: 'Edit a rejected claim — pre-filled form with accordion panels',
-  },
-  {
     path: '/claim-submitted',
     name: 'Claim submitted',
     description: 'Success confirmation after submitting a claim',
+  },
+  {
+    path: '/edit-claim',
+    name: 'Edit claim (later)',
+    description: 'Edit a rejected claim — pre-filled form with accordion panels',
   },
 ]
 

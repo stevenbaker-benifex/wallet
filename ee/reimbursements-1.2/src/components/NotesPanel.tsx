@@ -30,19 +30,20 @@ function Avatar({ initials, colorClass }: { initials: string; colorClass: string
   )
 }
 
-export function NotesPanel() {
+export function NotesPanel({ showHeader = true }: { showHeader?: boolean }) {
   const [noteText, setNoteText] = useState('')
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Input */}
-      <div className="flex items-center gap-1.5">
-            <i className="fa-regular fa-comments text-base text-grey-90" aria-hidden />
-            <h2 className="font-heading text-lg font-semibold leading-[1.2] text-grey-90">
-              Notes
-            </h2>
-          </div>
-          
+      {showHeader && (
+        <div className="flex items-center gap-1.5">
+          <i className="fa-regular fa-comments text-base text-grey-90" aria-hidden />
+          <h2 className="font-heading text-lg font-semibold leading-[1.2] text-grey-90">
+            Notes
+          </h2>
+        </div>
+      )}
+
 
       {/* <div className="flex items-center gap-2 rounded border border-grey-80 px-2 py-1.5">
         <input

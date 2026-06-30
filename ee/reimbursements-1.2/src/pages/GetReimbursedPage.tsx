@@ -188,7 +188,7 @@ export function GetReimbursedPage() {
               <button
                 type="button"
                 onClick={() => setManualMode(true)}
-                className="self-center font-body text-sm leading-[21px] tracking-wide text-grey-90 underline underline-offset-2"
+                className="self-center font-body text-sm leading-[21px] tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer"
               >
                 Or enter claim manually
               </button>
@@ -239,16 +239,16 @@ export function GetReimbursedPage() {
 
         <div className="flex min-h-0 flex-1 border-t border-grey-10">
 
-          {/* Left column */}
-          <div className="flex min-w-[400px] flex-1 flex-col gap-8 p-8">
-            <UploadZone onFilesSelected={handleFiles} showIllustration />
+          {/* Left column — scrolls independently */}
+          <div className="flex min-w-[400px] flex-1 flex-col gap-8 overflow-y-auto p-8">
+            <UploadZone onFilesSelected={handleFiles} showIllustration={receipts.length === 0} />
             <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty={!!activeClaim} />
 
             {!manualMode && rightPanelState === 'empty' && (
               <button
                 type="button"
                 onClick={() => setManualMode(true)}
-                className="self-center font-body text-sm leading-[21px] tracking-wide text-grey-90 underline underline-offset-2"
+                className="self-center font-body text-sm leading-[21px] tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer"
               >
                 Or enter claim manually
               </button>

@@ -99,7 +99,7 @@ export function ReceiptListItem({ receipt, onRemove }: ReceiptListItemProps) {
         >
           <i className={`${iconClass} text-2xl text-grey-90`} aria-hidden />
           <p className={`truncate font-body text-xs leading-[18px] tracking-wide text-grey-90 ${
-            isClickable ? 'group-hover:underline underline-offset-2' : ''
+            isClickable ? 'underline underline-offset-2' : ''
           }`}>
             {receipt.name}
           </p>
