@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const NOTES = [
   {
     id: 1,
@@ -31,8 +29,6 @@ function Avatar({ initials, colorClass }: { initials: string; colorClass: string
 }
 
 export function NotesPanel({ showHeader = true }: { showHeader?: boolean }) {
-  const [noteText, setNoteText] = useState('')
-
   return (
     <div className="flex flex-col gap-4">
       {showHeader && (

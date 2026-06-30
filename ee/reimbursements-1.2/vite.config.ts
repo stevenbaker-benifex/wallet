@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/wallet/ee/reimbursements-1.1/' : '/',
+  base: command === 'build' ? '/wallet/ee/reimbursements-1.2/' : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { AppShell } from '@/shell/AppShell'
 import { MobileHeader } from '@/shell/MobileHeader'
 import { Breadcrumb } from '@/components/Breadcrumb'
@@ -127,8 +126,6 @@ function ReceiptsCard() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export function ViewClaimPage() {
-  const navigate = useNavigate()
-
   return (
 
     <AppShell activeNav="wallet">
