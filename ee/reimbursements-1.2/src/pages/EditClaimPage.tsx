@@ -26,6 +26,7 @@ const INITIAL_RECEIPTS: ReceiptFile[] = [
     name: 'Boots Pharmacy - prescription.pdf',
     type: 'pdf',
     status: 'complete',
+    objectUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     extractedData: MOCK_EXTRACTED_DATA,
   },
   {
@@ -33,6 +34,7 @@ const INITIAL_RECEIPTS: ReceiptFile[] = [
     name: 'IMG_0130.jpg',
     type: 'image',
     status: 'complete',
+    objectUrl: 'https://placehold.co/800x1100/f5f0eb/555555?text=Receipt',
     extractedData: MOCK_EXTRACTED_DATA,
   },
 ]
@@ -90,6 +92,7 @@ export function EditClaimPage() {
       name: file.name,
       type: file.name.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image',
       status: 'uploading',
+      objectUrl: URL.createObjectURL(file),
     }
     setReceipts((prev) => [...prev, newReceipt])
     setIsExtracting(true)
@@ -120,16 +123,7 @@ export function EditClaimPage() {
   const rightPanelContent = (
     <div className="flex h-full flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto">
-        <AccordionSection
-          icon="fa-regular fa-comments"
-          title="Notes (2)"
-          open={notesOpen}
-          onToggle={() => setNotesOpen((v) => !v)}
-        >
-          <div className="px-6 pb-6">
-            <NotesPanel />
-          </div>
-        </AccordionSection>
+
 
         <AccordionSection
           icon="fa-solid fa-receipt"
@@ -142,6 +136,16 @@ export function EditClaimPage() {
           ) : (
             <ClaimForm data={activeClaim} showFooter={false} showHeader={false} />
           )}
+        </AccordionSection>
+        <AccordionSection
+          icon="fa-regular fa-comments"
+          title="Notes (2)"
+          open={notesOpen}
+          onToggle={() => setNotesOpen((v) => !v)}
+        >
+          <div className="px-6 pb-6">
+            <NotesPanel showHeader={false} />
+          </div>
         </AccordionSection>
       </div>
 
@@ -196,9 +200,9 @@ export function EditClaimPage() {
               </div>
             </div>
 
-            <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
-
             <MobileAddButton onFilesSelected={handleFiles} />
+
+            <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
 
             {/* Notes */}
             <div className="rounded-xl border-2 border-grey-05 bg-white p-4">
@@ -244,22 +248,6 @@ export function EditClaimPage() {
             </h1>
             <p className="font-body text-sm leading-[21px] tracking-wide text-grey-90">Claim #12234</p>
           </div>
-
-          {/* Rejection banner */}
-          <div className="flex items-start gap-3 rounded-xl border border-negative bg-red-50 px-4 py-3">
-            <i className="fa-regular fa-circle-xmark mt-0.5 text-negative" aria-hidden />
-            <div className="flex flex-col gap-0.5">
-              <p className="font-heading text-xl font-semibold leading-[1.2] text-grey-90">
-                Claim rejected
-              </p>
-              <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">
-                Invalid receipt.{' '}
-                {/* <a href="#" className="underline">
-                  View all notes
-                </a> */}
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Body */}
@@ -267,8 +255,23 @@ export function EditClaimPage() {
 
           {/* Left column */}
           <div className="flex min-w-[400px] flex-1 flex-col gap-8 border-r border-grey-10 overflow-y-auto p-8">
-            <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
+            {/* Rejection banner */}
+            <div className="flex items-start gap-3 rounded-xl border border-negative bg-red-50 px-4 py-3">
+              <i className="fa-regular fa-circle-xmark mt-0.5 text-negative" aria-hidden />
+              <div className="flex flex-col gap-0.5">
+                <p className="font-heading text-xl font-semibold leading-[1.2] text-grey-90">
+                  Claim rejected
+                </p>
+                <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">
+                  Invalid receipt.{' '}
+                  {/* <a href="#" className="underline">
+                    View all notes
+                  </a> */}
+                </p>
+              </div>
+            </div>
             <UploadZone onFilesSelected={handleFiles} />
+            <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
           </div>
 
           {/* Right column — accordion */}

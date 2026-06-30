@@ -25,6 +25,7 @@ export function useReceiptUpload() {
       name: file.name,
       type: getFileType(file.name),
       status: 'uploading',
+      objectUrl: URL.createObjectURL(file),
     }
 
     setReceipts((prev) => [...prev, receipt])
@@ -71,7 +72,7 @@ export function useReceiptUpload() {
     const id = createReceiptId()
     setReceipts((prev) => [
       ...prev,
-      { id, name: file.name, type: getFileType(file.name), status: 'complete' },
+      { id, name: file.name, type: getFileType(file.name), status: 'complete', objectUrl: URL.createObjectURL(file) },
     ])
   }, [])
 

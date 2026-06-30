@@ -3,20 +3,23 @@ import { useNavigate } from 'react-router-dom'
 import { NotesPanel } from '@/components/NotesPanel'
 import { AppShell } from '@/shell/AppShell'
 import { MobileHeader } from '@/shell/MobileHeader'
-import { MobileAddButton } from '@/components/MobileAddButton'
 import { Breadcrumb } from '@/components/Breadcrumb'
-import { ClaimForm } from '@/components/ClaimForm'
-import { ClaimFormSkeleton } from '@/components/ClaimFormSkeleton'
 import { ReceiptList } from '@/components/ReceiptList'
-import { UploadZone } from '@/components/UploadZone'
-import {
-  MOCK_EXTRACTED_DATA,
-  UPLOAD_DURATION_MS,
-  EXTRACT_DURATION_MS,
-  type ExtractedClaimData,
-  type ReceiptFile,
-} from '@/types/receipt'
-import { createReceiptId } from '@/utils/receipt'
+import { MOCK_EXTRACTED_DATA, type ReceiptFile } from '@/types/receipt'
+
+// ── Static claim data ─────────────────────────────────────────────────────────
+
+const CLAIM = {
+  title: 'Dental treatment',
+  ref: 'Claim #12234',
+  claimType: 'Health',
+  allowance: 'Wellbeing Allowance',
+  spendWindow: '1 Jan 2025 – 31 Dec 2026',
+  dateOfPurchase: '12 Jun 2025',
+  dateSubmitted: '15 Jun 2025 – 14:43',
+  amount: '£124.00',
+  balanceIfApproved: '£1,276.00',
+}
 
 // ── Pre-populated data ────────────────────────────────────────────────────────
 
@@ -37,7 +40,32 @@ const INITIAL_RECEIPTS: ReceiptFile[] = [
   },
 ]
 
-// ── Accordion section ─────────────────────────────────────────────────────────
+// ── Sub-components ────────────────────────────────────────────────────────────
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <span className="font-heading text-sm font-semibold leading-[21px] tracking-wide text-grey-90">
+        {label}
+      </span>
+      <span className="font-body text-sm leading-[21px] tracking-wide text-grey-90">{value}</span>
+    </div>
+  )
+}
+
+function ClaimDetailsContent() {
+  return (
+    <div className="flex flex-col gap-4 px-6 pb-6">
+      <DetailRow label="Claim type" value={CLAIM.claimType} />
+      <DetailRow label="Allowance" value={CLAIM.allowance} />
+      <DetailRow label="Spend window" value={CLAIM.spendWindow} />
+      <DetailRow label="Date of purchase" value={CLAIM.dateOfPurchase} />
+      <DetailRow label="Date submitted" value={CLAIM.dateSubmitted} />
+      <DetailRow label="Claim amount" value={CLAIM.amount} />
+      <DetailRow label="Balance if approved" value={CLAIM.balanceIfApproved} />
+    </div>
+  )
+}
 
 function AccordionSection({
   icon,
@@ -75,51 +103,30 @@ function AccordionSection({
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export function EditClaimPage() {
+export function ViewClaimV2Page() {
   const navigate = useNavigate()
   const [receipts, setReceipts] = useState<ReceiptFile[]>(INITIAL_RECEIPTS)
-  const [activeClaim, setActiveClaim] = useState<ExtractedClaimData>(MOCK_EXTRACTED_DATA)
-  const [isExtracting, setIsExtracting] = useState(false)
-  const [notesOpen, setNotesOpen] = useState(false)
+  const [notesOpen, setNotesOpen] = useState(true)
   const [detailsOpen, setDetailsOpen] = useState(true)
-
-  const addReceipt = useCallback((file: File) => {
-    const id = createReceiptId()
-    const newReceipt: ReceiptFile = {
-      id,
-      name: file.name,
-      type: file.name.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image',
-      status: 'uploading',
-    }
-    setReceipts((prev) => [...prev, newReceipt])
-    setIsExtracting(true)
-
-    window.setTimeout(() => {
-      setReceipts((prev) =>
-        prev.map((r) => (r.id === id ? { ...r, status: 'extracting' } : r)),
-      )
-      window.setTimeout(() => {
-        const extracted = { ...MOCK_EXTRACTED_DATA }
-        setReceipts((prev) =>
-          prev.map((r) => (r.id === id ? { ...r, status: 'complete', extractedData: extracted } : r)),
-        )
-        setActiveClaim(extracted)
-        setIsExtracting(false)
-      }, EXTRACT_DURATION_MS)
-    }, UPLOAD_DURATION_MS)
-  }, [])
 
   const removeReceipt = useCallback((id: string) => {
     setReceipts((prev) => prev.filter((r) => r.id !== id))
   }, [])
 
-  const handleFiles = (files: File[]) => files.forEach(addReceipt)
-
-  // ── Right panel content ──────────────────────────────────────────────────────
+  // ── Right panel ──────────────────────────────────────────────────────────────
 
   const rightPanelContent = (
     <div className="flex h-full flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto">
+        <AccordionSection
+          icon="fa-solid fa-receipt"
+          title="Claim details"
+          open={detailsOpen}
+          onToggle={() => setDetailsOpen((v) => !v)}
+        >
+          <ClaimDetailsContent />
+        </AccordionSection>
+
         <AccordionSection
           icon="fa-regular fa-comments"
           title="Notes (2)"
@@ -130,32 +137,22 @@ export function EditClaimPage() {
             <NotesPanel />
           </div>
         </AccordionSection>
-
-        <AccordionSection
-          icon="fa-solid fa-receipt"
-          title="Claim details"
-          open={detailsOpen}
-          onToggle={() => setDetailsOpen((v) => !v)}
-        >
-          {isExtracting ? (
-            <ClaimFormSkeleton />
-          ) : (
-            <ClaimForm data={activeClaim} showFooter={false} showHeader={false} />
-          )}
-        </AccordionSection>
       </div>
 
       {/* Sticky footer */}
-      <div className="flex shrink-0 flex-col items-start gap-3 border-t border-grey-10 px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
-        <p className="font-body text-xs leading-[18px] tracking-wide text-grey-70">
-          Please check fields populated using AI.
-        </p>
+      <div className="flex shrink-0 items-center gap-6 border-t border-grey-10 px-6 py-4">
         <button
           type="button"
-          onClick={() => navigate('/claim-submitted')}
-          className="inline-flex h-9 shrink-0 items-center justify-center rounded-full bg-brand-oregon px-4 font-button text-sm leading-[21px] text-white"
+          onClick={() => navigate('/edit-claim')}
+          className="inline-flex h-9 items-center justify-center rounded-full bg-brand-oregon px-4 font-button text-sm leading-[21px] text-white"
         >
-          Submit
+          Edit claim
+        </button>
+        <button
+          type="button"
+          className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2"
+        >
+          Cancel claim
         </button>
       </div>
     </div>
@@ -172,12 +169,11 @@ export function EditClaimPage() {
           <div className="flex flex-col gap-4">
             <Breadcrumb label="Wellbeing Allowance" />
 
-            {/* Title */}
             <div className="flex flex-col gap-0.5">
               <h1 className="font-heading text-2xl font-semibold leading-[1.2] text-grey-90">
-                Dental treatment
+                {CLAIM.title}
               </h1>
-              <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">Claim #12234</p>
+              <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">{CLAIM.ref}</p>
             </div>
 
             {/* Rejection banner */}
@@ -188,45 +184,39 @@ export function EditClaimPage() {
                   Claim rejected
                 </p>
                 <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">
-                  Invalid receipt.{' '}
-                  {/* <a href="#" className="underline">
-                    View all notes
-                  </a> */}
+                  Invalid receipt.
                 </p>
               </div>
             </div>
 
             <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
 
-            <MobileAddButton onFilesSelected={handleFiles} />
-
             {/* Notes */}
             <div className="rounded-xl border-2 border-grey-05 bg-white p-4">
               <NotesPanel />
             </div>
 
-            {/* Form section */}
-            <div className="overflow-hidden rounded-xl border-2 border-grey-05 bg-white">
-              {isExtracting ? (
-                <ClaimFormSkeleton />
-              ) : (
-                <ClaimForm data={activeClaim} showFooter={false} showHeader={false} />
-              )}
+            {/* Read-only claim details */}
+            <div className="rounded-xl border-2 border-grey-05 bg-white p-4">
+              <ClaimDetailsContent />
             </div>
           </div>
         </div>
 
         {/* Fixed mobile footer */}
-        <div className="fixed bottom-0 left-0 right-0 flex flex-col gap-3 border-t border-grey-10 bg-white px-4 pb-6 pt-4">
-          <p className="text-center font-body text-xs leading-[18px] tracking-wide text-grey-70">
-            Please check fields populated using AI.
-          </p>
+        <div className="fixed bottom-0 left-0 right-0 flex items-center gap-4 border-t border-grey-10 bg-white px-4 pb-6 pt-4">
           <button
             type="button"
-            onClick={() => navigate('/claim-submitted')}
-            className="flex h-11 w-full items-center justify-center rounded-full bg-brand-oregon font-button text-base text-white"
+            onClick={() => navigate('/edit-claim')}
+            className="flex h-11 flex-1 items-center justify-center rounded-full bg-brand-oregon font-button text-base text-white"
           >
-            Submit
+            Edit claim
+          </button>
+          <button
+            type="button"
+            className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2"
+          >
+            Cancel claim
           </button>
         </div>
       </div>
@@ -240,9 +230,9 @@ export function EditClaimPage() {
 
           <div className="flex flex-col gap-0.5">
             <h1 className="font-heading text-[32px] font-semibold leading-[1.2] text-grey-90">
-              Dental treatment
+              {CLAIM.title}
             </h1>
-            <p className="font-body text-sm leading-[21px] tracking-wide text-grey-90">Claim #12234</p>
+            <p className="font-body text-sm leading-[21px] tracking-wide text-grey-90">{CLAIM.ref}</p>
           </div>
 
           {/* Rejection banner */}
@@ -253,10 +243,7 @@ export function EditClaimPage() {
                 Claim rejected
               </p>
               <p className="font-body text-sm leading-[21px] tracking-wide text-grey-70">
-                Invalid receipt.{' '}
-                {/* <a href="#" className="underline">
-                  View all notes
-                </a> */}
+                Invalid receipt.
               </p>
             </div>
           </div>
@@ -266,13 +253,12 @@ export function EditClaimPage() {
         <div className="flex min-h-0 flex-1 border-t border-grey-10">
 
           {/* Left column */}
-          <div className="flex min-w-[400px] flex-1 flex-col gap-8 border-r border-grey-10 overflow-y-auto p-8">
+          <div className="flex min-w-[400px] flex-1 flex-col gap-8 overflow-y-auto border-r border-grey-10 p-8">
             <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
-            <UploadZone onFilesSelected={handleFiles} />
           </div>
 
           {/* Right column — accordion */}
-          <div className="flex h-full w-[400px] shrink-0 flex-col overflow-hidden">
+          <div className="flex min-w-[400px] flex-1 flex-col overflow-hidden">
             {rightPanelContent}
           </div>
 

@@ -3,9 +3,6 @@ import { GetReimbursedPage } from '@/pages/GetReimbursedPage'
 import { ViewClaimPage } from '@/pages/ViewClaimPage'
 import { EditClaimPage } from '@/pages/EditClaimPage'
 import { ClaimSubmittedPage } from '@/pages/ClaimSubmittedPage'
-import { ViewClaimV2Page } from '@/pages/ViewClaimV2Page'
-import { ViewClaimV3Page } from '@/pages/ViewClaimV3Page'
-import { GetReimbursedV2Page } from '@/pages/GetReimbursedV2Page'
 import { PrototypeIndex } from '@/pages/PrototypeIndex'
 
 export interface PrototypeRoute {
@@ -21,19 +18,9 @@ export const prototypeRoutes: PrototypeRoute[] = [
     description: 'Upload receipt — empty state, fake extraction flow',
   },
   {
-    path: '/get-reimbursed-v2',
-    name: 'Get reimbursed v2',
-    description: 'Duplicate of get-reimbursed for experimentation',
-  },
-  {
     path: '/view-claim',
     name: 'View claim',
     description: 'Read-only view of a submitted claim with notes panel',
-  },
-  {
-    path: '/edit-claim',
-    name: 'Edit claim',
-    description: 'Edit a rejected claim — pre-filled form with accordion panels',
   },
   {
     path: '/claim-submitted',
@@ -41,24 +28,16 @@ export const prototypeRoutes: PrototypeRoute[] = [
     description: 'Success confirmation after submitting a claim',
   },
   {
-    path: '/view-claim-v2',
-    name: 'View claim v2',
-    description: 'Duplicate of edit-claim for experimentation',
-  },
-  {
-    path: '/view-claim-v3',
-    name: 'View claim v3',
-    description: 'Duplicate of view-claim for experimentation',
+    path: '/edit-claim',
+    name: 'Edit claim (later)',
+    description: 'Edit a rejected claim — pre-filled form with accordion panels',
   },
 ]
 
 export const routes: RouteObject[] = [
   { path: '/', element: <PrototypeIndex /> },
   { path: '/get-reimbursed', element: <GetReimbursedPage /> },
-  { path: '/get-reimbursed-v2', element: <GetReimbursedV2Page /> },
   { path: '/view-claim', element: <ViewClaimPage /> },
   { path: '/edit-claim', element: <EditClaimPage /> },
   { path: '/claim-submitted', element: <ClaimSubmittedPage /> },
-  { path: '/view-claim-v2', element: <ViewClaimV2Page /> },
-  { path: '/view-claim-v3', element: <ViewClaimV3Page /> },
 ]
