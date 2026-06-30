@@ -126,12 +126,11 @@ function ReceiptsCard() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export function ViewClaimV3Page() {
+export function ViewClaimPage() {
   const navigate = useNavigate()
 
   return (
-
-    <AppShell activeNav="wallet">
+    <AppShell activeNav="wallet" grow>
 
       {/* ── MOBILE LAYOUT (hidden lg+) ── */}
       <div className="flex min-h-screen flex-col bg-grey-02 lg:hidden">
@@ -176,7 +175,7 @@ export function ViewClaimV3Page() {
       </div>
 
       {/* ── DESKTOP LAYOUT (hidden below lg) ── */}
-      <div className="hidden flex-1 flex-col overflow-hidden rounded-2xl bg-white lg:flex">
+      <div className="hidden flex-col rounded-2xl bg-white lg:flex">
 
         {/* Header */}
         <div className="flex flex-col gap-6 p-8">
@@ -185,22 +184,22 @@ export function ViewClaimV3Page() {
             <h1 className="font-heading text-[32px] font-semibold leading-[1.2] text-grey-90">{CLAIM.title}</h1>
             <p className="font-body text-sm leading-[21px] tracking-wide text-grey-90">{CLAIM.ref}</p>
           </div>
+          <StatusBanner />
         </div>
 
         {/* Body */}
-        <div className="flex min-h-0 flex-1 border-t border-grey-10">
+        <div className="flex">
 
-          {/* Left column */}
-          <div className="flex min-w-0 flex-1 flex-col overflow-hidden border-r border-grey-10">
-            <div className="flex flex-1 flex-col gap-6 overflow-y-auto p-8">
-              <StatusBanner />
+          {/* Left column — grows with content */}
+          <div className="flex min-w-0 flex-1 flex-col">
+            <div className="flex flex-col gap-6 pb-8 pl-8 pr-4">
               <AmountsCard />
               <ClaimDetailsCard />
               <ReceiptsCard />
             </div>
 
-            {/* Footer */}
-            <div className="flex shrink-0 items-center gap-6 border-t border-grey-10 px-8 py-4">
+            {/* Footer — flows with content */}
+            <div className="flex items-center gap-6 px-8 py-4">
               <button
                 type="button"
                 onClick={() => navigate('/edit-claim')}
@@ -217,9 +216,11 @@ export function ViewClaimV3Page() {
             </div>
           </div>
 
-          {/* Right column — Notes */}
-          <div className="flex w-[400px] shrink-0 flex-col overflow-y-auto p-8">
-            <NotesPanel />
+          {/* Right column — Notes in a card */}
+          <div className="flex w-[400px] shrink-0 flex-col pb-8 pl-4 pr-8">
+            <div className="max-h-[480px] overflow-y-auto rounded-xl border-2 border-grey-05 p-4 lg:p-6">
+              <NotesPanel />
+            </div>
           </div>
 
         </div>
