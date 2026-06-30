@@ -44,7 +44,7 @@ export function NotesPanel() {
           </div>
           
 
-      <div className="flex items-center gap-2 rounded border border-grey-80 px-2 py-1.5">
+      {/* <div className="flex items-center gap-2 rounded border border-grey-80 px-2 py-1.5">
         <input
           type="text"
           placeholder="Add a note..."
@@ -59,7 +59,7 @@ export function NotesPanel() {
         >
           <i className="fa-solid fa-paper-plane text-sm" aria-hidden />
         </button>
-      </div>
+      </div> */}
 
       {/* Messages */}
       {NOTES.map((note) => (

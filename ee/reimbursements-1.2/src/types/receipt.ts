@@ -15,6 +15,7 @@ export interface ReceiptFile {
   name: string
   type: 'pdf' | 'image'
   status: ReceiptStatus
+  objectUrl?: string
   extractedData?: ExtractedClaimData
 }
 
@@ -29,4 +30,4 @@ export const MOCK_EXTRACTED_DATA: ExtractedClaimData = {
 }
 
 export const UPLOAD_DURATION_MS = 3000
-export const EXTRACT_DURATION_MS = 5000
+export const EXTRACT_DURATION_MS = 4000
