@@ -165,7 +165,7 @@ export function ViewClaimPage() {
           </button> */}
           <button
             type="button"
-            className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer"
+            className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer hover:text-[#AE0000]"
           >
             Cancel claim
           </button>
@@ -207,7 +207,7 @@ export function ViewClaimPage() {
               </button> */}
               <button
                 type="button"
-                className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer"
+                className="font-body text-base leading-6 tracking-wide text-grey-90 underline underline-offset-2 cursor-pointer hover:text-[#AE0000]"
               >
                 Cancel claim
               </button>
