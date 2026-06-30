@@ -173,7 +173,7 @@ export function EditClaimPage() {
         <MobileHeader />
 
         <div className="flex-1 overflow-y-auto px-4 pb-32 pt-6">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <Breadcrumb label="Wellbeing Allowance" />
 
             {/* Title */}
