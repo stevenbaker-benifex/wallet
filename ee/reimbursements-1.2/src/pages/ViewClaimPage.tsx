@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { AppShell } from '@/shell/AppShell'
 import { MobileHeader } from '@/shell/MobileHeader'
 import { Breadcrumb } from '@/components/Breadcrumb'
@@ -16,8 +17,18 @@ const CLAIM = {
   dateOfPurchase: '12 Jun 2025',
   dateSubmitted: '15 Jun 2025 – 14:43',
   receipts: [
-    { name: 'Boots Pharmacy - prescription.pdf', icon: 'fa-solid fa-file-pdf' },
-    { name: 'IMG_0130.jpg', icon: 'fa-regular fa-image' },
+    {
+      name: 'Boots Pharmacy - prescription.pdf',
+      icon: 'fa-solid fa-file-pdf',
+      type: 'pdf' as const,
+      url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    },
+    {
+      name: 'IMG_0130.jpg',
+      icon: 'fa-regular fa-image',
+      type: 'image' as const,
+      url: 'https://placehold.co/800x1100/f5f0eb/555555?text=Receipt',
+    },
   ],
 }
 
@@ -97,28 +108,75 @@ function ClaimDetailsCard() {
   )
 }
 
-function ReceiptsCard() {
+function ImagePreviewModal({ src, name, onClose }: { src: string; name: string; onClose: () => void }) {
   return (
-    <SectionCard className="flex flex-col gap-4 p-4 lg:p-6">
-      <SectionHeader icon="fa-solid fa-paperclip" title="Your receipts" />
-      <div className="flex flex-col gap-4">
-        {CLAIM.receipts.map((r) => (
-          <div key={r.name} className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <i className={`${r.icon} text-2xl text-grey-90`} aria-hidden />
-              <span className="font-body text-xs leading-[18px] tracking-wide text-grey-90">{r.name}</span>
-            </div>
-            <button
-              type="button"
-              aria-label={`Download ${r.name}`}
-              className="flex size-8 items-center justify-center rounded-full border border-grey-10 text-grey-70 transition-colors hover:bg-grey-05"
-            >
-              <i className="fa-solid fa-download text-sm" aria-hidden />
-            </button>
-          </div>
-        ))}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+      onClick={onClose}
+    >
+      <div className="relative max-h-full max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute -right-3 -top-3 flex size-8 items-center justify-center rounded-full bg-white text-grey-70 shadow-md hover:bg-grey-05"
+          aria-label="Close preview"
+        >
+          <i className="fa-solid fa-xmark text-base" aria-hidden />
+        </button>
+        <img src={src} alt={name} className="max-h-[85vh] w-full rounded-xl object-contain shadow-2xl" />
+        <p className="mt-2 text-center font-body text-xs text-white/70">{name}</p>
       </div>
-    </SectionCard>
+    </div>
+  )
+}
+
+function ReceiptsCard() {
+  const [previewImage, setPreviewImage] = useState<{ src: string; name: string } | null>(null)
+
+  const handleClick = (r: typeof CLAIM.receipts[number]) => {
+    if (r.type === 'pdf') {
+      window.open(r.url, '_blank')
+    } else {
+      setPreviewImage({ src: r.url, name: r.name })
+    }
+  }
+
+  return (
+    <>
+      {previewImage && (
+        <ImagePreviewModal
+          src={previewImage.src}
+          name={previewImage.name}
+          onClose={() => setPreviewImage(null)}
+        />
+      )}
+      <SectionCard className="flex flex-col gap-4 p-4 lg:p-6">
+        <SectionHeader icon="fa-solid fa-paperclip" title="Your receipts" />
+        <div className="flex flex-col gap-4">
+          {CLAIM.receipts.map((r) => (
+            <div key={r.name} className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => handleClick(r)}
+                className="flex min-w-0 items-center gap-2 text-left cursor-pointer"
+              >
+                <i className={`${r.icon} text-2xl text-grey-90`} aria-hidden />
+                <span className="truncate font-body text-xs leading-[18px] tracking-wide text-grey-90 underline underline-offset-2">
+                  {r.name}
+                </span>
+              </button>
+              <button
+                type="button"
+                aria-label={`Download ${r.name}`}
+                className="ml-2 flex size-8 shrink-0 items-center justify-center rounded-full border border-grey-10 text-grey-70 transition-colors hover:bg-grey-05"
+              >
+                <i className="fa-solid fa-download text-sm" aria-hidden />
+              </button>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+    </>
   )
 }
 

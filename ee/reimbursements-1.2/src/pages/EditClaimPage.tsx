@@ -200,22 +200,32 @@ export function EditClaimPage() {
               </div>
             </div>
 
-            <MobileAddButton onFilesSelected={handleFiles} />
+            {/* Form section */}
+            <div className="overflow-hidden rounded-xl border-2 border-grey-05 bg-white">
+              {isExtracting ? (
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-center gap-1.5 px-4 pt-4">
+                    <i className="fa-solid fa-receipt text-base text-grey-90" aria-hidden />
+                    <h2 className="font-heading text-lg font-semibold leading-[1.2] text-grey-90">
+                      Claim details
+                    </h2>
+                  </div>
+                  <ClaimFormSkeleton />
+                </div>
+              ) : (
+                <ClaimForm data={activeClaim} showFooter={false} showHeader />
+              )}
+            </div>
+
+           
 
             <ReceiptList receipts={receipts} onRemove={removeReceipt} showWhenEmpty />
+
+            <MobileAddButton onFilesSelected={handleFiles} />
 
             {/* Notes */}
             <div className="rounded-xl border-2 border-grey-05 bg-white p-4">
               <NotesPanel />
-            </div>
-
-            {/* Form section */}
-            <div className="overflow-hidden rounded-xl border-2 border-grey-05 bg-white">
-              {isExtracting ? (
-                <ClaimFormSkeleton />
-              ) : (
-                <ClaimForm data={activeClaim} showFooter={false} showHeader={false} />
-              )}
             </div>
           </div>
         </div>
