@@ -90,7 +90,7 @@ export function UploadZone({ onFilesSelected, showIllustration = false }: Upload
           <p className={`text-center font-body text-base font-bold leading-6 tracking-wide transition-colors ${
             isDragging ? 'text-brand-oregon' : 'text-grey-90 group-hover:text-brand-oregon'
           }`}>
-            {isDragging ? 'Release to upload' : 'Drop a receipt here to start your reimbursement claim'}
+            {isDragging ? 'Release to upload' : 'Drop a receipt here'}
           </p>
           {!isDragging && (
             <button

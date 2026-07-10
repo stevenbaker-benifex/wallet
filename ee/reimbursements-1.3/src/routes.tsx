@@ -15,7 +15,7 @@ export const prototypeRoutes: PrototypeRoute[] = [
   {
     path: '/get-reimbursed',
     name: 'Get reimbursed',
-    description: 'Upload receipt — empty state, fake extraction flow',
+    description: 'Upload receipt — manual extraction flow',
   },
   {
     path: '/view-claim',
