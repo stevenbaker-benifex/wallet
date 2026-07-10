@@ -1,0 +1,21 @@
+@keyframes extract-button-reveal {
+  0% {
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.14),
+      0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+.extract-button-reveal {
+  animation: extract-button-reveal 1.2s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .extract-button-reveal {
+    animation: none;
+  }
+}

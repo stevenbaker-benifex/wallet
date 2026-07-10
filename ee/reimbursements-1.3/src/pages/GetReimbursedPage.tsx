@@ -27,7 +27,9 @@ export function GetReimbursedPage() {
     receipts,
     activeClaim,
     rightPanelState,
-    canExtract,
+    autoFilledFromReceipt,
+    showExtractButton,
+    extractEnabled,
     addReceipt,
     extractFromReceipt,
     removeReceipt,
@@ -65,7 +67,9 @@ export function GetReimbursedPage() {
               ) : (
                 <ClaimForm
                   data={claimData}
-                  showExtractButton={canExtract}
+                  autoFilledFromReceipt={autoFilledFromReceipt}
+                  showExtractButton={showExtractButton}
+                  extractEnabled={extractEnabled}
                   showFooter={false}
                   onExtract={extractFromReceipt}
                 />
@@ -114,7 +118,9 @@ export function GetReimbursedPage() {
             ) : (
               <ClaimForm
                 data={claimData}
-                showExtractButton={canExtract}
+                autoFilledFromReceipt={autoFilledFromReceipt}
+                showExtractButton={showExtractButton}
+                extractEnabled={extractEnabled}
                 onExtract={extractFromReceipt}
                 onSubmit={handleSubmit}
               />

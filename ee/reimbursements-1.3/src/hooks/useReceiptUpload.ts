@@ -17,6 +17,7 @@ export type RightPanelState = 'empty' | 'skeleton' | 'form'
 export function useReceiptUpload() {
   const [receipts, setReceipts] = useState<ReceiptFile[]>([])
   const [activeClaim, setActiveClaim] = useState<ExtractedClaimData | null>(null)
+  const [autoFilledFromReceipt, setAutoFilledFromReceipt] = useState<string | null>(null)
 
   const addReceipt = useCallback((file: File) => {
     const id = createReceiptId()
@@ -39,10 +40,10 @@ export function useReceiptUpload() {
 
   const extractFromReceipt = useCallback(() => {
     setReceipts((prev) => {
-      const latestComplete = [...prev].reverse().find((r) => r.status === 'complete')
-      if (!latestComplete) return prev
+      const firstComplete = prev.find((r) => r.status === 'complete')
+      if (!firstComplete) return prev
 
-      const { id, name } = latestComplete
+      const { id, name } = firstComplete
 
       window.setTimeout(() => {
         const extractedData = { ...MOCK_EXTRACTED_DATA, title: deriveTitle(name) }
@@ -50,6 +51,7 @@ export function useReceiptUpload() {
           p.map((r) => (r.id === id ? { ...r, status: 'complete', extractedData } : r)),
         )
         setActiveClaim(extractedData)
+        setAutoFilledFromReceipt(name)
       }, EXTRACT_DURATION_MS)
 
       return prev.map((r) => (r.id === id ? { ...r, status: 'extracting' } : r))
@@ -59,10 +61,9 @@ export function useReceiptUpload() {
   const removeReceipt = useCallback((id: string) => {
     setReceipts((prev) => {
       const next = prev.filter((item) => item.id !== id)
-      const lastComplete = [...next].reverse().find((item) => item.status === 'complete')
-      // only clear the claim if another complete receipt exists to replace it;
-      // if all receipts are gone, keep the form visible for validation on submit
-      if (lastComplete) setActiveClaim(lastComplete.extractedData ?? null)
+      if (next.length === 0) {
+        setAutoFilledFromReceipt(null)
+      }
       return next
     })
   }, [])
@@ -70,10 +71,12 @@ export function useReceiptUpload() {
   const isExtracting = receipts.some((r) => r.status === 'extracting')
   const rightPanelState: RightPanelState = isExtracting ? 'skeleton' : 'form'
 
-  const canExtract =
+  const showExtractButton = receipts.length > 0
+
+  const extractEnabled =
     receipts.some((r) => r.status === 'complete') &&
     !receipts.some((r) => r.status === 'uploading' || r.status === 'extracting') &&
-    !(activeClaim?.aiFields.length)
+    autoFilledFromReceipt === null
 
   /** Add a receipt to the list without triggering extraction or updating the form */
   const addReceiptSkipExtraction = useCallback((file: File) => {
@@ -87,8 +90,10 @@ export function useReceiptUpload() {
   return {
     receipts,
     activeClaim,
+    autoFilledFromReceipt,
     rightPanelState,
-    canExtract,
+    showExtractButton,
+    extractEnabled,
     addReceipt,
     addReceiptSkipExtraction,
     extractFromReceipt,

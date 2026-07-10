@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ExtractedClaimData } from '@/types/receipt'
+import '@/styles/extract-button.css'
 import { FormField, SelectInput, TextArea, TextInput } from './FormField'
 
 interface ClaimFormProps {
   data: ExtractedClaimData
+  autoFilledFromReceipt?: string | null
   showExtractButton?: boolean
+  extractEnabled?: boolean
   showFooter?: boolean
   showHeader?: boolean
   onExtract?: () => void
@@ -13,7 +16,9 @@ interface ClaimFormProps {
 
 export function ClaimForm({
   data,
+  autoFilledFromReceipt = null,
   showExtractButton = false,
+  extractEnabled = false,
   showFooter = true,
   showHeader = true,
   onExtract,
@@ -21,11 +26,23 @@ export function ClaimForm({
 }: ClaimFormProps) {
   const [form, setForm] = useState(data)
   const [clearedAiFields, setClearedAiFields] = useState<Set<string>>(new Set())
+  const [revealAnimation, setRevealAnimation] = useState(false)
+  const prevExtractEnabled = useRef(false)
 
   useEffect(() => {
     setForm(data)
     setClearedAiFields(new Set())
   }, [data])
+
+  useEffect(() => {
+    if (extractEnabled && !prevExtractEnabled.current) {
+      setRevealAnimation(true)
+      const timer = window.setTimeout(() => setRevealAnimation(false), 1200)
+      prevExtractEnabled.current = extractEnabled
+      return () => window.clearTimeout(timer)
+    }
+    prevExtractEnabled.current = extractEnabled
+  }, [extractEnabled])
 
   const update = (field: keyof ExtractedClaimData, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -51,14 +68,36 @@ export function ClaimForm({
         )}
 
         {showExtractButton && onExtract && (
-          <button
-            type="button"
-            onClick={onExtract}
-            className="flex h-9 w-full items-center justify-center gap-2 rounded-full border border-brand-dark-green bg-white px-4 font-button text-sm font-bold text-grey-90"
-          >
-            <i className="fa-solid fa-wand-magic-sparkles text-base text-brand-dark-green" aria-hidden />
-            Auto-fill from receipt
-          </button>
+          <div className="flex flex-col gap-2">
+            <button
+              type="button"
+              disabled={!extractEnabled}
+              onClick={onExtract}
+              className={`inline-flex h-9 w-full items-center justify-center gap-2 rounded-full px-4 py-2 font-button text-sm font-semibold leading-[21px] ${
+                extractEnabled
+                  ? `cursor-pointer border border-brand-dark-green bg-white text-grey-90 ${revealAnimation ? 'extract-button-reveal' : ''}`
+                  : 'cursor-not-allowed bg-grey-20 text-[#666]'
+              }`}
+            >
+              <i
+                className={`fa-solid fa-wand-magic-sparkles text-base ${
+                  extractEnabled ? 'text-brand-dark-green' : 'text-[#999]'
+                }`}
+                aria-hidden
+              />
+              Auto-fill from receipt
+            </button>
+
+            {autoFilledFromReceipt && (
+              <div className="flex items-start gap-1">
+                <i className="fa-solid fa-circle-info mt-0.5 shrink-0 text-sm text-[#306494]" aria-hidden />
+                <p className="font-body text-xs leading-[18px] tracking-wide text-grey-90">
+                  Auto-filled from {autoFilledFromReceipt}. Delete and re-upload if you want to use
+                  auto-fill again on a different receipt.
+                </p>
+              </div>
+            )}
+          </div>
         )}
 
         <div className="flex flex-col gap-4">
