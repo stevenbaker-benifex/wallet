@@ -93,7 +93,7 @@ export function ClaimForm({
                 <i className="fa-solid fa-circle-info mt-0.5 shrink-0 text-sm text-[#306494]" aria-hidden />
                 <p className="font-body text-xs leading-[18px] tracking-wide text-grey-90">
                   Auto-filled from {autoFilledFromReceipt}. Delete and re-upload if you want to use
-                  auto-fill again on a different receipt.
+                  auto-fill again from a different receipt.
                 </p>
               </div>
             )}
