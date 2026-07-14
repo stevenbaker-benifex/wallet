@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import type { ExtractedClaimData } from '@/types/receipt'
 import '@/styles/extract-button.css'
 import { FormField, SelectInput, TextArea, TextInput } from './FormField'
+import {
+  MULTI_SPEND_PERIODS,
+  SINGLE_SPEND_PERIOD,
+  SpendPeriodSection,
+} from './SpendPeriodSection'
 
 interface ClaimFormProps {
   data: ExtractedClaimData
@@ -24,15 +30,27 @@ export function ClaimForm({
   onExtract,
   onSubmit,
 }: ClaimFormProps) {
+  const [searchParams] = useSearchParams()
+  const spendPeriodMode = searchParams.get('spendPeriods') === '2' ? 'multi' : 'single'
+
   const [form, setForm] = useState(data)
   const [clearedAiFields, setClearedAiFields] = useState<Set<string>>(new Set())
   const [revealAnimation, setRevealAnimation] = useState(false)
+  const [selectedSpendPeriod, setSelectedSpendPeriod] = useState(
+    spendPeriodMode === 'multi' ? MULTI_SPEND_PERIODS[0].id : SINGLE_SPEND_PERIOD.id,
+  )
   const prevExtractEnabled = useRef(false)
 
   useEffect(() => {
     setForm(data)
     setClearedAiFields(new Set())
   }, [data])
+
+  useEffect(() => {
+    setSelectedSpendPeriod(
+      spendPeriodMode === 'multi' ? MULTI_SPEND_PERIODS[0].id : SINGLE_SPEND_PERIOD.id,
+    )
+  }, [spendPeriodMode])
 
   useEffect(() => {
     if (extractEnabled && !prevExtractEnabled.current) {
@@ -100,13 +118,15 @@ export function ClaimForm({
           </div>
         )}
 
+        <SpendPeriodSection
+          mode={spendPeriodMode}
+          selectedId={selectedSpendPeriod}
+          onSelect={setSelectedSpendPeriod}
+        />
+
         <div className="flex flex-col gap-4">
           <FormField label="Title" required ai={showAi('title')}>
             <TextInput value={form.title} onChange={(v) => update('title', v)} />
-          </FormField>
-
-          <FormField label="Spend period">
-            <SelectInput value={form.spendPeriod} placeholder="Please select" />
           </FormField>
 
           <FormField label="Date of purchase" required>
