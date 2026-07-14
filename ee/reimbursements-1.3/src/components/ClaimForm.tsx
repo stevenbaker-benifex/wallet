@@ -78,7 +78,7 @@ export function ClaimForm({
       <div className="flex flex-1 flex-col gap-6 overflow-y-auto p-4 lg:p-6">
         {showHeader && (
           <div className="flex items-center gap-1.5">
-            <i className="fa-solid fa-receipt text-base text-grey-90" aria-hidden />
+            <i className="fa-light fa-receipt text-base text-grey-90" aria-hidden />
             <h2 className="font-heading text-lg font-semibold leading-[1.2] text-grey-90">
               Claim details
             </h2>

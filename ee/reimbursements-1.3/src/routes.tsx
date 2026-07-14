@@ -15,7 +15,12 @@ export const prototypeRoutes: PrototypeRoute[] = [
   {
     path: '/get-reimbursed',
     name: 'Get reimbursed',
-    description: 'Upload receipt — manual extraction. Add ?spendPeriods=2 for multi spend period radios',
+    description: 'Upload receipt — manual extraction, single spend period',
+  },
+  {
+    path: '/get-reimbursed?spendPeriods=2',
+    name: 'Get reimbursed (2 spend periods)',
+    description: 'Same flow with multi spend period radio selection',
   },
   {
     path: '/view-claim',

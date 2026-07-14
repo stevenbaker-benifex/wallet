@@ -10,7 +10,7 @@ interface FormFieldProps {
 
 export function FormField({ label, required, ai, children }: FormFieldProps) {
   return (
-    <div className="relative w-full max-w-[400px]">
+    <div className="relative w-full">
       <div className="mb-2 flex items-center gap-0.5">
         <label className="font-body text-sm font-bold leading-5 tracking-wide text-grey-90">
           {label}

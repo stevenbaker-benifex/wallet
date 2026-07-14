@@ -53,7 +53,8 @@ export function GetReimbursedPage() {
 
         <div className="flex-1 overflow-y-auto px-4 pb-32 pt-6">
           <div className="flex flex-col gap-6">
-            <Breadcrumb label="Wellbeing Allowance" />
+            <Breadcrumb label="Claims history" />
+            <PageHeader title="Get reimbursed" allowanceName="Wellbeing allowance." />
 
             <MobileAddButton onFilesSelected={handleFiles} />
 
@@ -97,8 +98,8 @@ export function GetReimbursedPage() {
       {/* ── DESKTOP LAYOUT (hidden below lg) ── */}
       <div className="hidden flex-1 flex-col overflow-hidden rounded-2xl bg-white lg:flex">
         <div className="flex flex-col gap-6 p-8">
-          <Breadcrumb label="Wellbeing Allowance" />
-          <PageHeader title="Get reimbursed" />
+          <Breadcrumb label="Claims history" />
+          <PageHeader title="Get reimbursed" allowanceName="Wellbeing allowance." />
         </div>
 
         <div className="flex min-h-0 flex-1 border-t border-grey-10">
@@ -112,7 +113,7 @@ export function GetReimbursedPage() {
           </div>
 
           {/* Right column — always visible */}
-          <div className="flex w-[400px] flex-col overflow-hidden border-l border-grey-10">
+          <div className="flex min-w-[450px] w-[450px] flex-col overflow-hidden border-l border-grey-10">
             {rightPanelState === 'skeleton' ? (
               <ClaimFormSkeleton />
             ) : (

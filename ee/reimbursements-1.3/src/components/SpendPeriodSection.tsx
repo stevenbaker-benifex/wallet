@@ -52,7 +52,21 @@ export function SpendPeriodSection({ mode, selectedId, onSelect }: SpendPeriodSe
         <span className="font-body text-sm font-bold leading-[21px] tracking-wide text-grey-90">
           Spend period
         </span>
-        <i className="fa-solid fa-circle-info text-base text-[#306494]" aria-hidden />
+        <span className="group relative inline-flex">
+          <button
+            type="button"
+            className="inline-flex size-5 items-center justify-center text-[#306494]"
+            aria-label="Select the period that covers your purchase date"
+          >
+            <i className="fa-regular fa-circle-info text-base" aria-hidden />
+          </button>
+          <span
+            role="tooltip"
+            className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2.5 hidden w-max max-w-[220px] -translate-x-1/2 rounded-md bg-grey-90 px-3 py-2 text-center font-body text-xs leading-[18px] tracking-wide text-white shadow-menu after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-grey-90 group-hover:block group-focus-within:block"
+          >
+            Select the period that covers your purchase date
+          </span>
+        </span>
       </div>
 
       <div className="flex flex-col gap-2" role="radiogroup" aria-label="Spend period">

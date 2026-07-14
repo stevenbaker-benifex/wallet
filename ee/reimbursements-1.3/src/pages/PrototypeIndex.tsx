@@ -26,6 +26,9 @@ export function PrototypeIndex() {
                     >
                       {route.name}
                     </Link>
+                    <p className="mt-1 font-body text-sm leading-[21px] tracking-wide text-grey-70">
+                      {route.description}
+                    </p>
                   </div>
                   <a
                     href={url}
